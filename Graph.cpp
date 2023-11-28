@@ -48,6 +48,22 @@ class graph{
         }
         return 0;
     }
+     int findJudge(int N, vector<vector<int>>& trust) {
+    vector<int> first(N+1,0),second(N+1,0);
+    for(int i = 0 ; i < trust.size(); i++)
+    {
+        first[trust[i][0]]++;
+        second[trust[i][1]]++;
+    }
+    for(int j = 1 ; j <= N ; j++)
+    {
+        if(first[j] == 0 && second[j] == N-1)
+        {
+            return j;
+        }
+    }
+    return -1;
+    }
 
 };
 
