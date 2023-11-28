@@ -1,5 +1,6 @@
 #include<iostream>
 #include<list>
+#include<vector>
 using namespace std;
 
 class graph{
@@ -30,6 +31,22 @@ class graph{
             cout<<endl;
 
         }
+    }
+      int findCenter(vector<vector<int>>& edges) {
+        if(edges.size() != 0)
+        {
+        for(int i = 0 ; i < edges[0].size(); i++)
+        {
+            for(int j = 0 ; j < edges[1].size(); j++)
+            {
+                if(edges[0][i] == edges[1][j])
+                {
+                    return edges[0][i];
+                }
+            }
+        }
+        }
+        return 0;
     }
 
 };
