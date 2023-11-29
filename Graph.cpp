@@ -3,21 +3,51 @@
 #include<vector>
 using namespace std;
 
+class Edge{
+    public:
+    int src;
+    int des;
+    int wt = -9999;
+    Edge(int s,int d)
+    {
+        this->src = s;
+        this->des = d;
+    }
+    Edge(int s,int d,int w)
+    {
+        this->src = s;
+        this->des = d;
+        this->wt = w;
+    }
+};
+
 class graph{
     public:
-    list<int> *adjlist;
+
+    public:
+    list<Edge> *adjlist;
     int number;
     graph(int num){
-        adjlist = new list<int>[num];
+        adjlist = new list<Edge>[num];
         this->number = num;
     }
+    // For making 
     void addEdge(int front,int Back,bool val)
     {
-        this->adjlist[front].push_back(Back);
+        this->adjlist[front].push_back(Edge(front,Back));
         if(val)
         {
-            adjlist[Back].push_back(front);
+            adjlist[Back].push_back(Edge(Back,front));
         }
+    }
+    void addEdge(int front,int Back,int wet,bool val)
+    {
+        this->adjlist[front].push_back(Edge(front,Back,wet));
+        if(val)
+        {
+            adjlist[Back].push_back(Edge(Back,front,wet));
+        }
+
     }
     void print()
     {
@@ -26,13 +56,20 @@ class graph{
             cout<<i<<"-->";
             for(auto it:adjlist[i])
             {
-                cout<<it<<" ";
+                cout<<"{"<<it.src<<","<<it.des<<"} ";
+                if(it.wt != -9999)
+                {
+                    cout<<"weight"<<it.wt;
+                }
             }
+
             cout<<endl;
 
         }
     }
-      int findCenter(vector<vector<int>>& edges) {
+
+    // Find Center 
+    int findCenter(vector<vector<int>>& edges) {
         if(edges.size() != 0)
         {
         for(int i = 0 ; i < edges[0].size(); i++)
@@ -48,7 +85,8 @@ class graph{
         }
         return 0;
     }
-     int findJudge(int N, vector<vector<int>>& trust) {
+    // Find Judge
+    int findJudge(int N, vector<vector<int>>& trust) {
     vector<int> first(N+1,0),second(N+1,0);
     for(int i = 0 ; i < trust.size(); i++)
     {
@@ -75,6 +113,7 @@ int main()
     g.addEdge(1,3,true);
     g.addEdge(4,3,true);
     g.addEdge(1,4,true);
+    g.addEdge(1,4,12,true);
 
     g.print();
 }
