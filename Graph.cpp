@@ -1,6 +1,7 @@
 #include<iostream>
 #include<list>
 #include<vector>
+#include<queue>
 using namespace std;
 
 class Edge{
@@ -67,6 +68,32 @@ class graph{
 
         }
     }
+    void BFS(int s){
+        vector<bool> visted;
+        visted.resize(number,false);
+        queue<int> Que;
+
+        visted[s] = true;
+        Que.push(s);
+        while(!Que.empty())
+        {
+            s = Que.front();
+            Que.pop();
+            cout<<s<<" ";
+            for(auto it:this->adjlist[s])
+            {
+                if(!visted[it.des])
+                {
+                    Que.push(it.des);
+                    visted[it.des] = true;
+                }
+            }
+
+        }
+
+
+
+    }
 
     // Find Center 
     int findCenter(vector<vector<int>>& edges) {
@@ -116,4 +143,5 @@ int main()
     g.addEdge(1,4,12,true);
 
     g.print();
+    g.BFS(4);
 }
