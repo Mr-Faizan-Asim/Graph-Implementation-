@@ -92,33 +92,27 @@ class graph{
 
         }
     }
-//     void DFS(int v)
-// {
-//     map<int, bool> visited;
+    //  DFS
+    void DFS(int startNode)
+    {
+        vector<bool> visited(number,false);
+        DFSUtil(startNode,visited);
 
-//     Initialize all vertices as not visited (false)
-//     for (const auto &pair : adjlist)
-//     {
-//         visited.emplace(pair.first, false);
-//     }
+    }
+    void DFSUtil(int v,vector<bool> &visited)
+    {
+        visited[v] = true;
+        cout<<v<<" ";
+        for(const auto& edge: this->adjlist[v])
+        {
+            int neig = edge.des;
+            if(!visited[neig])
+            {
+                DFSUtil(neig,visited);
+            }
+        }
 
-//     Call the recursive DFS function
-//     DFSUtil(v, visited);
-// }
-
-// void DFSUtil(int v,map<int, bool> &visited)
-// {
-//     visited[v] = true;
-//     cout << v << " ";
-//     for (auto i = this->adjlist[v].begin(); i != this->adjlist[v].end(); i++)
-//     {
-//         if (!visited[i->des])
-//         {
-//             DFSUtil(i->des,visited);
-//         }
-//     }
-// }
-
+    }
 
     // Find Center 
     int findCenter(vector<vector<int>>& edges) {
@@ -168,6 +162,7 @@ int main()
     g.addEdge(1,4,12,true);
 
     //g.print();
-    //g.BFS(4);
+    g.BFS(4);
+    g.DFS(4);
    
 }
