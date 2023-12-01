@@ -2,6 +2,7 @@
 #include<list>
 #include<vector>
 #include<queue>
+#include<map>
 using namespace std;
 
 class Edge{
@@ -90,10 +91,34 @@ class graph{
             }
 
         }
-
-
-
     }
+//     void DFS(int v)
+// {
+//     map<int, bool> visited;
+
+//     Initialize all vertices as not visited (false)
+//     for (const auto &pair : adjlist)
+//     {
+//         visited.emplace(pair.first, false);
+//     }
+
+//     Call the recursive DFS function
+//     DFSUtil(v, visited);
+// }
+
+// void DFSUtil(int v,map<int, bool> &visited)
+// {
+//     visited[v] = true;
+//     cout << v << " ";
+//     for (auto i = this->adjlist[v].begin(); i != this->adjlist[v].end(); i++)
+//     {
+//         if (!visited[i->des])
+//         {
+//             DFSUtil(i->des,visited);
+//         }
+//     }
+// }
+
 
     // Find Center 
     int findCenter(vector<vector<int>>& edges) {
@@ -123,7 +148,7 @@ class graph{
     for(int j = 1 ; j <= N ; j++)
     {
         if(first[j] == 0 && second[j] == N-1)
-        {
+        {   
             return j;
         }
     }
@@ -142,6 +167,7 @@ int main()
     g.addEdge(1,4,true);
     g.addEdge(1,4,12,true);
 
-    g.print();
-    g.BFS(4);
+    //g.print();
+    //g.BFS(4);
+   
 }
